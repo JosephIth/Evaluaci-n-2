@@ -85,6 +85,17 @@ public class SucursalController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
+     //Buscar sucursal por comuna//
+    @GetMapping("/{comuna}")
+    public ResponseEntity <List<Sucursal>> buscar(@PathVariable String comuna) {
+        try {
+            List<Sucursal> listaSucursal = sucursalService.findbycomuna(comuna);
+            return ResponseEntity.ok(listaSucursal);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 }
