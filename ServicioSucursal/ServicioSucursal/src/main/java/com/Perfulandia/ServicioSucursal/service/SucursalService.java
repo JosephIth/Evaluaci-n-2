@@ -31,5 +31,9 @@ public class SucursalService {
         sucursalRepository.deleteById(id);
     }
 
+    //Encontrar por comuna (retorna una lista de sucursales)//
+    public List<Sucursal> findbycomuna(String comuna){
+        return sucursalRepository.findByComuna(comuna);
+    }	    
  
 }
