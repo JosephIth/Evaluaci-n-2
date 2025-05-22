@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  
 
 @RestController
-@RequestMapping("/api/V1/Sucursaless")
+@RequestMapping("/api/V1/Sucursales")
 public class SucursalController {
 
 
