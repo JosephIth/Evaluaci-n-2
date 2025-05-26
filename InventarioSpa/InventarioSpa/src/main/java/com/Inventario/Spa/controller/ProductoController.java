@@ -1,6 +1,6 @@
 package com.Inventario.Spa.controller;
 
-import com.Inventario.Spa.model.Categoria;
+/*import com.Inventario.Spa.model.Categoria;*/
 import com.Inventario.Spa.model.Producto;
 import com.Inventario.Spa.service.ProductoService;
 //Importar service//
@@ -8,12 +8,10 @@ import com.Inventario.Spa.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+/*import org.springframework.web.bind.annotation.RequestParam;*/
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
-/*import org.springframework.web.bind.annotation.RequestParam;*/
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -83,27 +81,14 @@ public class ProductoController {
         }
     }
 
-    /*@GetMapping("categoria/{categoria}")
-    public ResponseEntity<List<Producto>> listadoPorCategoria(@PathVariable Categoria categoria) {
-        List<Producto> productos = productoService.findByCategoria(categoria);
-        if (productos.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(productos);
-    }*/
-    
+
     @GetMapping("categoria/{idCategoria}")
     public ResponseEntity<List<Producto>> listadoPorCategoria(@PathVariable String idCategoria) {
-
-        Categoria categoria = new Categoria();
-        categoria.setIdCategoria(idCategoria);
-        List<Producto> listaProductos = productoService.findByCategoria(categoria);
+        List<Producto> listaProductos = productoService.findByCategoria(idCategoria);
         if(listaProductos.isEmpty()){
             return ResponseEntity.noContent().build();
-
         }
         return ResponseEntity.ok(listaProductos);
     }
-    
     
 }

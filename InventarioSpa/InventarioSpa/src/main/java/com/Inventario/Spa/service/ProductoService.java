@@ -33,7 +33,7 @@ public class ProductoService {
         productoRepository.deleteById(id);
     }
 
-    public List<Producto> findByCategoria(Categoria categoria) {
-        return productoRepository.findByCategoria_IdCategoria(categoria);
+    public List<Producto> findByCategoria(String idCategoria) {
+        return productoRepository.findByCategoria_IdCategoria(idCategoria);
     }
 }
