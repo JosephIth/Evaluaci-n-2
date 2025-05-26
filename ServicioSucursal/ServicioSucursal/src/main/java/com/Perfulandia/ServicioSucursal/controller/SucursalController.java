@@ -1,7 +1,9 @@
-package com.Perfulandia.ServicioSucursal.controller;
+package com.Inventario.Spa.controller;
 
-import com.Perfulandia.ServicioSucursal.service.*;
-import com.Perfulandia.ServicioSucursal.model.Sucursal;
+import com.Inventario.Spa.model.Categoria;
+import com.Inventario.Spa.model.Producto;
+import com.Inventario.Spa.service.ProductoService;
+//Importar service//
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,91 +13,97 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 /*import org.springframework.web.bind.annotation.RequestParam;*/
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
- 
+
 
 @RestController
-@RequestMapping("/api/V1/Sucursales")
-public class SucursalController {
 
+@RequestMapping("api/v1/inventario")
+
+public class ProductoController {
 
     @Autowired
-    private SucursalService sucursalService; 
+    private ProductoService productoService;
 
-    //Mostrar Lista de sucursal//
     @GetMapping
-    public ResponseEntity<List<Sucursal>> listar() {
-        List<Sucursal> listaSucursales  = sucursalService.findAll();
-        if (listaSucursales.isEmpty()) {
+    public ResponseEntity<List<Producto>> listar() {
+        List<Producto> productos  = productoService.findAll();
+        if (productos.isEmpty()) {
             return ResponseEntity.noContent().build();
-            //alternativa 2 -> return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            
         }
-        return ResponseEntity.ok(listaSucursales);
-        //alternativa 2 -> return new ResponseEntity<>(pacientes, HttpStatus.OK);
+        return ResponseEntity.ok(productos);
+        
     }
 
-    //Guardar una nueva sucursal//
     @PostMapping
-    public ResponseEntity<Sucursal> guardar(@RequestBody Sucursal sucursal) {
-        Sucursal nuevaSucursal = sucursalService.save(sucursal);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevaSucursal);
+    public ResponseEntity<Producto> guardar(@RequestBody Producto producto) {
+        Producto productoMuevo = productoService.save(producto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(productoMuevo);
     //    return new ResponseEntity<>(productoMuevo, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Sucursal> buscar(@PathVariable Integer id) {
+    public ResponseEntity<Producto> buscar(@PathVariable Integer id) {
         try {
-            Sucursal sucursal = sucursalService.findbyId(id);
-            return ResponseEntity.ok(sucursal);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+            Producto producto = productoService.findById(id);
+            return ResponseEntity.ok(producto);
+        } catch ( Exception e ) {
+            return  ResponseEntity.notFound().build();
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Sucursal> actualizar(@PathVariable Integer id, @RequestBody Sucursal sucursal) {
+    public ResponseEntity<Producto> actualizar(@PathVariable Integer id, @RequestBody Producto producto) {
         try {
-            Sucursal sucu = sucursalService.findbyId(id);
-            sucu.setId(id);
-            sucu.setDireccion(sucursal.getDireccion());
-            sucu.setComuna(sucursal.getComuna());
-            sucu.setHorarioApertura(sucursal.getHorarioApertura());
-            sucu.setHorarioCierre(sucursal.getHorarioCierre());
-            sucu.setPersonal(sucursal.getPersonal());
-            sucu.setTelefono(sucursal.getTelefono());
+            Producto prod = productoService.findById(id);
+            prod.setIdProducto(id);
+            prod.setNombre(producto.getNombre());
+            prod.setDescripcion(producto.getDescripcion());
+            prod.setPrecio(producto.getPrecio());
+            prod.setStock(producto.getStock());
+            prod.setCategoria(producto.getCategoria());
 
-            sucursalService.save(sucu);
-            return ResponseEntity.ok(sucursal);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+            productoService.save(prod);
+            return ResponseEntity.ok(producto);
+        } catch ( Exception e ) {
+            return  ResponseEntity.notFound().build();
         }
-        
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Long id){
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
         try {
-            sucursalService.delete(id);
+            productoService.delete(id);
             return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+        } catch ( Exception e ) {
+            return  ResponseEntity.notFound().build();
         }
     }
 
-     //Buscar sucursal por comuna//
-    @GetMapping("/{comuna}")
-    public ResponseEntity <List<Sucursal>> buscar(@PathVariable String comuna) {
-        try {
-            List<Sucursal> listaSucursal = sucursalService.findbycomuna(comuna);
-            return ResponseEntity.ok(listaSucursal);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+    /*@GetMapping("categoria/{categoria}")
+    public ResponseEntity<List<Producto>> listadoPorCategoria(@PathVariable Categoria categoria) {
+        List<Producto> productos = productoService.findByCategoria(categoria);
+        if (productos.isEmpty()){
+            return ResponseEntity.noContent().build();
         }
+        return ResponseEntity.ok(productos);
+    }*/
+    
+    @GetMapping("categoria/{idCategoria}")
+    public ResponseEntity<List<Producto>> listadoPorCategoria(@PathVariable String idCategoria) {
+
+        Categoria categoria = new Categoria();
+        categoria.setIdCategoria(idCategoria);
+        List<Producto> listaProductos = productoService.findByCategoria(categoria);
+        if(listaProductos.isEmpty()){
+            return ResponseEntity.noContent().build();
+
+        }
+        return ResponseEntity.ok(listaProductos);
     }
-
-
+    
+    
 }
