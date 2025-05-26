@@ -5,6 +5,8 @@ import com.Perfulandia.ServicioSucursal.model.Sucursal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-
+ 
 
 @RestController
 @RequestMapping("/api/V1/Sucursales")
@@ -44,6 +46,8 @@ public class SucursalController {
     //    return new ResponseEntity<>(productoMuevo, HttpStatus.ACCEPTED);
     }
 
+
+    //buscar sucursal por id//
     @GetMapping("/{id}")
     public ResponseEntity<Sucursal> buscar(@PathVariable Integer id) {
         try {
@@ -54,6 +58,7 @@ public class SucursalController {
         }
     }
 
+    //Actualizar una sucrusal//
     @PutMapping("/{id}")
     public ResponseEntity<Sucursal> actualizar(@PathVariable Integer id, @RequestBody Sucursal sucursal) {
         try {
@@ -71,9 +76,10 @@ public class SucursalController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
-
+        
     }
 
+    //eliminar sucursal//
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){
         try {
@@ -83,8 +89,9 @@ public class SucursalController {
             return ResponseEntity.notFound().build();
         }
     }
+    
 
-     //Buscar sucursal por comuna//
+    //Buscar sucursal por comuna//
     @GetMapping("/{comuna}")
     public ResponseEntity <List<Sucursal>> buscar(@PathVariable String comuna) {
         try {
@@ -94,3 +101,6 @@ public class SucursalController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
+}
