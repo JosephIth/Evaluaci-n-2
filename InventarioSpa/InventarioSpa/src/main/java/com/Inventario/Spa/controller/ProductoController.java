@@ -1,5 +1,6 @@
 package com.Inventario.Spa.controller;
 
+import com.Inventario.Spa.model.Categoria;
 import com.Inventario.Spa.model.Producto;
 import com.Inventario.Spa.service.ProductoService;
 //Importar service//
@@ -10,6 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+/*import org.springframework.web.bind.annotation.RequestParam;*/
+import org.springframework.web.bind.annotation.RequestParam;
+
+
 
 
 @RestController
@@ -55,7 +61,7 @@ public class ProductoController {
             Producto prod = productoService.findById(id);
             prod.setIdProducto(id);
             prod.setNombre(producto.getNombre());
-            prod.setDescripción(producto.getDescripción());
+            prod.setDescripcion(producto.getDescripcion());
             prod.setPrecio(producto.getPrecio());
             prod.setStock(producto.getStock());
             prod.setCategoria(producto.getCategoria());
@@ -76,4 +82,28 @@ public class ProductoController {
             return  ResponseEntity.notFound().build();
         }
     }
+
+    /*@GetMapping("categoria/{categoria}")
+    public ResponseEntity<List<Producto>> listadoPorCategoria(@PathVariable Categoria categoria) {
+        List<Producto> productos = productoService.findByCategoria(categoria);
+        if (productos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(productos);
+    }*/
+    
+    @GetMapping("categoria/{idCategoria}")
+    public ResponseEntity<List<Producto>> listadoPorCategoria(@PathVariable String idCategoria) {
+
+        Categoria categoria = new Categoria();
+        categoria.setIdCategoria(idCategoria);
+        List<Producto> listaProductos = productoService.findByCategoria(categoria);
+        if(listaProductos.isEmpty()){
+            return ResponseEntity.noContent().build();
+
+        }
+        return ResponseEntity.ok(listaProductos);
+    }
+    
+    
 }

@@ -18,19 +18,20 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProducto; 
 
-    @Column(nullable=false)
+    @Column(nullable=false, length = 50)
     private String nombre;
 
-    @Column(nullable = false)
-    private String Descripción; 
+    @Column(nullable = false, length = 100)
+    private String Descripcion; 
 
     @Column(nullable = false)
     private double Precio;
 
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "NUMBER (4)" )
     private int stock;
 
-    @Column(nullable = false)
-    private String categoria;
+    @ManyToOne
+    @JoinColumn(name = "id_categoria",referencedColumnName = "idCategoria", nullable = false)
+    private Categoria categoria;
 
 }

@@ -1,5 +1,6 @@
 package com.Inventario.Spa.service;
 
+import com.Inventario.Spa.model.Categoria;
 import com.Inventario.Spa.model.Producto;
 import com.Inventario.Spa.repository.ProductoRepository;
 import jakarta.transaction.Transactional;
@@ -30,5 +31,9 @@ public class ProductoService {
 
     public void delete(Long id) {
         productoRepository.deleteById(id);
+    }
+
+    public List<Producto> findByCategoria(Categoria categoria) {
+        return productoRepository.findByCategoria_IdCategoria(categoria);
     }
 }
