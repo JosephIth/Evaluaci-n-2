@@ -32,10 +32,10 @@ public class SucursalController {
         List<Sucursal> listaSucursales  = sucursalService.findAll();
         if (listaSucursales.isEmpty()) {
             return ResponseEntity.noContent().build();
-            //alternativa 2 -> return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            
         }
         return ResponseEntity.ok(listaSucursales);
-        //alternativa 2 -> return new ResponseEntity<>(pacientes, HttpStatus.OK);
+        
     }
 
     //Guardar una nueva sucursal//
@@ -92,7 +92,7 @@ public class SucursalController {
     
 
     //Buscar sucursal por comuna//
-    @GetMapping("/{comuna}")
+    @GetMapping("/comuna/{comuna}")
     public ResponseEntity <List<Sucursal>> buscar(@PathVariable String comuna) {
         try {
             List<Sucursal> listaSucursal = sucursalService.findbycomuna(comuna);
