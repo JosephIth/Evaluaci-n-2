@@ -20,7 +20,7 @@ La aplicación está dividida en los siguientes microservicios:
 ### 2.  microservicio-ventas
 - **Descripción:** Registro y administración de ventas y sus detalles.
 - [Repositorio](https://github.com/JosephIth/MicroServicio-Ventas.git)
-- 
+  
 ### 3.  microservicio-inventario
 - **Descripción:** Administración de productos del inventario por categoría, ID, etc.
 
