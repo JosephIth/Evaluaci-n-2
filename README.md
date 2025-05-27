@@ -49,3 +49,16 @@ Se utilizaron pruebas funcionales con **Postman** para verificar:
 - Oracle DB / H2 (según microservicio)
 - Postman
 - Git & GitHub
+
+  ## ⚙ Configuración de la base de datos
+
+Cada microservicio tiene su propio archivo `application.properties` donde se configura la conexión a la base de datos. A continuación, un ejemplo típico con **Oracle**:
+
+```properties
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521/XE
+spring.datasource.username=usuario
+spring.datasource.password=contraseña
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
