@@ -6,10 +6,8 @@ Este repositorio contiene los microservicios desarrollados para la solución dis
 
 ## Arquitectura del sistema
 
-La aplicación está dividida en los siguientes microservicios independientes:
+La aplicación está dividida en los siguientes microservicios:
 
-
-Cada microservicio puede ejecutarse y desarrollarse de forma independiente, siguiendo el patrón de diseño de microservicios.
 
 ---
 
@@ -21,7 +19,8 @@ Cada microservicio puede ejecutarse y desarrollarse de forma independiente, sigu
 
 ### 2.  microservicio-ventas
 - **Descripción:** Registro y administración de ventas y sus detalles.
-
+- [Repositorio](https://github.com/JosephIth/MicroServicio-Ventas.git)
+- 
 ### 3.  microservicio-inventario
 - **Descripción:** Administración de productos del inventario por categoría, ID, etc.
 
