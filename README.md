@@ -39,7 +39,7 @@ Se utilizaron pruebas funcionales con **Postman** para verificar:
 - Spring Boot
 - Spring Data JPA
 - Maven
-- Oracle DB / H2 (según microservicio)
+- Oracle DB
 - Postman
 - Git & GitHub
 
