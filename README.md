@@ -4,13 +4,6 @@ Este repositorio contiene los microservicios desarrollados para la solución dis
 
 ---
 
-## Arquitectura del sistema
-
-La aplicación está dividida en los siguientes microservicios:
-
-
----
-
 ##  Microservicios incluidos
 
 ### 1.  microservicio-usuarios
