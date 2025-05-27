@@ -26,6 +26,7 @@ La aplicación está dividida en los siguientes microservicios:
 
 ### 4.  microservicio-sucursales
 - **Descripción:** Gestión de sucursales físicas de Perfulandia SPA.
+- [Repositorio](https://github.com/JosephIth/Microservicio-Sucursal.git)
 
 ---
 
@@ -49,7 +50,7 @@ Se utilizaron pruebas funcionales con **Postman** para verificar:
 - Postman
 - Git & GitHub
 
-  ## ⚙ Configuración de la base de datos
+  ## Configuración de la base de datos
 
 Cada microservicio tiene su propio archivo `application.properties` donde se configura la conexión a la base de datos. A continuación, un ejemplo típico con **Oracle**:
 
